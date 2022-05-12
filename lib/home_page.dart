@@ -59,8 +59,6 @@ class HomePage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 100),
                 child: Center(
                   child: BlocBuilder<TimerBloc, TimerState>(
-                    condition: (previousState, currentState) =>
-                    currentState.runtimeType != previousState.runtimeType,
                     builder: (context, state) {
                       print("duration ${state.duration}");
                       final String minutesSection = ((state.duration / 60) % 60)

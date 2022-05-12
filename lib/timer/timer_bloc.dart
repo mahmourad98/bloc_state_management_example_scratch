@@ -18,10 +18,10 @@ class TimerBloc extends Bloc<TimerEvent, TimerState>{
    if(event is TimerEventStart){
     yield TimerStateRunning(event.duration);
     _tickerStreamSubscription?.cancel();
-    _tickerStreamSubscription = this._clockTicker.ticking(ticks: state.duration)
+    _tickerStreamSubscription = this._clockTicker.ticking(ticks: event.duration)
     .listen(
       (duration) {
-        //print("event: $event");
+        print("duration: $duration");
         add(TimerEventTick(duration: duration));
       }
     );
@@ -49,7 +49,8 @@ class TimerBloc extends Bloc<TimerEvent, TimerState>{
      }
    }
    else if(event is TimerEventTick) {
-      yield (event.duration > 0) ? TimerStateRunning(event.duration) : TimerStateFinished();
+     //print("tick event duration: ${event.duration}");
+     yield (event.duration > 0) ? TimerStateRunning(event.duration) : TimerStateFinished();
    }
   }
 
