@@ -25,4 +25,9 @@ class TimerStatePaused extends TimerState{
 
 class TimerStateFinished extends TimerState{
   TimerStateFinished({int duration = 0}) : super(duration);
+
+  @override
+  List<Object> get props {
+    return <int>[duration];
+  }
 }

@@ -41,11 +41,11 @@ class TimerBloc extends Bloc<TimerEvent, TimerState>{
    else if(event is TimerEventReset) {
      if (state is TimerStateRunning) {
        _tickerStreamSubscription?.cancel();
-       yield TimerStateReady(state.duration);
+       yield TimerStateReady(this._duration);
      }
      else if (state is TimerStatePaused) {
        _tickerStreamSubscription?.cancel();
-       yield TimerStateReady(state.duration);
+       yield TimerStateReady(this._duration);
      }
    }
    else if(event is TimerEventTick) {
